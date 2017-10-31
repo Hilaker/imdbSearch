@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import SearchContainer from './SearchContainer.js';
 import logo from './logo.svg';
-import './App.css';
+import './styles/Globals.css';
 
 class App extends Component {
     render() {
         return (
-            <div className="App">
+            <div className='container'>
                 <SearchContainer />
             </div>
         );
