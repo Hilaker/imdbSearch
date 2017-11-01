@@ -22,11 +22,14 @@ class SearchContainer extends React.Component {
     onYearChange(event){
         this.setState({searchYear: event.target.value});
     }
-    onSearchClick(){
+    onSearchClick(event){
         var searchTitle = this.state.searchTitle.trim();
         if(!searchTitle){
             //empty title
-            this.setState({userMsg: 'Enter a word or phrase to search on.'});
+            this.setState({
+                userMsg: 'Enter a word or phrase to search on.',
+                resultsList: null
+            });
         }else {
             this.setState({isLoading: true});
             getIMDBMovies(searchTitle, this.state.searchYear).then((json) => {
@@ -36,17 +39,19 @@ class SearchContainer extends React.Component {
                 })
             });
         }
+        event.preventDefault();
     }
     render(){
         return (
             <div>
                 <div className='header'>
                     <span className='logo'>IMDb</span>
-                    <div className='search-header'>
+                    <form className='search-header' onSubmit={this.onSearchClick.bind(this)}>
                         <input type='text' className='search-input title' name='title' placeholder='Movie title' onChange={this.onTitleChange.bind(this)}/>
                         <input type='number' className='search-input year' name='year' placeholder='Year' onChange={this.onYearChange.bind(this)}/>
                         <div className='search-button' onClick={this.onSearchClick.bind(this)}><i className="fa fa-search"></i></div>
-                    </div>
+                        <button className='invisible-button' type="submit"></button>
+                    </form>
                 </div>
 
                 <SearchResults resultsList={this.state.resultsList} userMsg={this.state.userMsg}/>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SearchContainer from './SearchContainer.js';
-import logo from './logo.svg';
 import './styles/Globals.css';
 
 class App extends Component {

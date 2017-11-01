@@ -8,7 +8,7 @@ export function getIMDBMovies(title, year){
         url = url + '&year=' + year;
     }
     return fetch(url)
-        .then(checkAjaxStatus)
+        .then(checkRequestStatus)
         .then(function(response) {
             return response.json()
         }).then(function(json) {
@@ -18,7 +18,7 @@ export function getIMDBMovies(title, year){
         });
 }
 
-function checkAjaxStatus(response){
+function checkRequestStatus(response){
     if(response.ok){
         return response;
     }else {
@@ -27,12 +27,3 @@ function checkAjaxStatus(response){
         throw error;
     }
 }
-
-//function getParsedMoviesList(data){
-//    var ttt = ['dsd'];
-//    data[i].title
-//    data[i].year
-//    data[i].poster.thumb
-//    return ttt;
-//}
-

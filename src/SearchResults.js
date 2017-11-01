@@ -9,22 +9,21 @@ class SearchResults extends React.Component {
         if(resultsList){
             if(resultsList.length > 0){
                 return (
-                    <div>
+                    <div className='results'>
                         Displaying {resultsList.length} results
                         {resultsList.map((movie , index) => {
                             return(
-                                <div key={index}>
-                                    <img className='movie-thumb' src={movie.poster.thumb} />
-                                    <a href={movie.url.url}>{movie.title}</a> <b>{movie.year}</b>
+                                <div className='movie' key={index}>
+                                    <div className='movie-thumb'><img  src={movie.poster.thumb} alt=''/></div>
+                                    <a className='title' href={movie.url.url} target='_blank'>{movie.title} ({movie.year})</a>
                                 </div>)
                         })}
                     </div>
                 );
             }
-            return <div>No movies were found...</div>
-
+            return <div className='user-message-title'>No movies were found...</div>
         }
-        return this.props.userMsg ?  <div>{this.props.userMsg}</div> : '';
+        return this.props.userMsg ?  <div className='user-message-title'>{this.props.userMsg}</div> : '';
     }
 }
 
