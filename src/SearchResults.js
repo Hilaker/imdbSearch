@@ -5,12 +5,13 @@ import React from 'react'
 
 class SearchResults extends React.Component {
     render(){
+        const searchQuery = this.props.searchQuery;
         let resultsList = this.props.resultsList;
         if(resultsList){
             if(resultsList.length > 0){
                 return (
                     <div className='results'>
-                        Displaying {resultsList.length} results
+                        Displaying {resultsList.length} results for "{searchQuery}"
                         {resultsList.map((movie , index) => {
                             return(
                                 <div className='movie' key={index}>

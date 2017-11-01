@@ -24,17 +24,20 @@ class SearchContainer extends React.Component {
     }
     onSearchClick(event){
         var searchTitle = this.state.searchTitle.trim();
+        var year = this.state.searchYear;
         if(!searchTitle){
             //empty title
             this.setState({
                 userMsg: 'Enter a word or phrase to search on.',
-                resultsList: null
+                resultsList: null,
+                searchQuery: null
             });
         }else {
             this.setState({isLoading: true});
             getIMDBMovies(searchTitle, this.state.searchYear).then((json) => {
                 this.setState({
                     resultsList: json || [],
+                    searchQuery: year? searchTitle + ' ' + year: searchTitle,
                     isLoading: false
                 })
             });
@@ -54,7 +57,7 @@ class SearchContainer extends React.Component {
                     </form>
                 </div>
 
-                <SearchResults resultsList={this.state.resultsList} userMsg={this.state.userMsg}/>
+                <SearchResults resultsList={this.state.resultsList} userMsg={this.state.userMsg} searchQuery={this.state.searchQuery}/>
                 <LoadingAnimation showLoading={this.state.isLoading}/>
             </div>
         )
